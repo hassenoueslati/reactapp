@@ -23,22 +23,28 @@ import styled from "styled-components";
              return <p> expensive </p>
          }
      }
-    render() {
-        return <ProductFrame>
-                    <ProductImageWrapper>
-                        <ProductImage src={this.state.Product.img}></ProductImage>
-                    </ProductImageWrapper>
-                    <ProductInfoWrapper>
-                        <span>{this.state.Product.name}</span>
-                        <span>{this.state.Product.price}</span>
-                        {this.state.Product.price > 2 ? "Expensive" : "Cheap"}
-                        {this.expensiveOrNot()}
-                        {/* if seulement sans else {this.state.Product.price > 2 && "Expensive"}*/}
-
-                        <button type="submit" onClick={this.addPrice}>add</button>
-                    </ProductInfoWrapper>
-                </ProductFrame>;
-    }
+     render() {
+         return (
+             <ProductFrame>
+                 <ProductImageWrapper>
+                     <ProductImage src={this.state.Product.img}></ProductImage>
+                 </ProductImageWrapper>
+                 <ProductInfoWrapper>
+          <span>
+            <a href={"/product/" + this.state.Product.name}>
+              {this.state.Product.name}
+            </a>
+          </span>
+                     <span>
+            {this.state.Product.price}{" "}
+                         {/* {Number(this.state.product.price) > 2 ? "expensive" : "Promo"} */}
+                         {Number(this.state.Product.price) > 2 && "expensive"}
+          </span>
+                     <button onClick={this.addPrice}>Add 0.1</button>
+                 </ProductInfoWrapper>
+             </ProductFrame>
+         );
+     }
 }
 
 const ProductFrame = styled.div`
